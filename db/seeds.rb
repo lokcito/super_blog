@@ -128,7 +128,67 @@ end
 
 puts "Post: #{Post.where(blog: ulb, user: us2).count}"
 puts "Tarea 17. Hecho."
+#Tarea 18
+us3 = User.where(first_name: "Usuario 3").first
 
+Blog.all.each do |t|
+  p = Post.new
+  # p.blog = Blog.find(t.id)
+  # p.blog = Blog.where(id: t.id).first
+  p.blog = t
+  p.user = us3
+  p.title = "Un titulo"
+  p.content = "Un contenido cualquiera"
+  p.save
+end
+#Contar el numero de post que tiene el usuario 3
+puts "#{Post.where(user: us3).count}"
+puts "#{us3.post.count}"
+puts "Tarea 18. Hecho."
 
+#Tarea 19
+#us3 = User.where(first_name: "Usuario 3").first
+primpub = Post.all[0]
+secpub = Post.all[1]
+
+1.upto(2) do |t|
+  m = Message.new
+  m.post = primpub
+  m.user = us3
+  m.author = "algun author"
+  m.message = "Aqui va algun mensage"
+  m.save
+end
+
+1.upto(3) do |t|
+  m = Message.new
+  m.post = secpub
+  m.user = us3
+  m.author = "algun author"
+  m.message = "Aqui va algun mensage"
+  m.save
+end
+# Contar el numeros de Messages del usuario 3
+puts us3.message.count
+puts Message.where(user: us3).count
+puts "Tarea 19. Hecho."
+
+#Tarea 20
+
+us4 = User.where(first_name: "Usuario 4").first
+ulpub = Post.all.last
+
+1.upto(3) do |t|
+  m = Message.new
+  m.post = ulpub
+  m.user = us4
+  m.author = "Algun author"
+  m.message = "Algun mensaje x"
+  m.save
+end
+# Contar los mensajes del usuario 4
+puts "Mensajes: #{us4.message.count}"
+puts Message.where(user: us4).count
+puts "Tarea 20. Hecho."
 
 
