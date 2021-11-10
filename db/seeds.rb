@@ -191,4 +191,47 @@ puts "Mensajes: #{us4.message.count}"
 puts Message.where(user: us4).count
 puts "Tarea 20. Hecho."
 
+#Tarea 21
+#Captura al segundo Post en la variable po2
+po2 = Post.all[1]
+puts "Antes => #{po2.user.first_name}"
+#Captura al ultimo usuario en la variable ulu
+ulu = User.all.last
+#Actualizar usuario
+po2.user = ulu
+po2.save
+puts "Despues => #{po2.user.first_name}"
+puts "Tarea 21. Hecho. "
 
+#Tarea 22 
+po2 = Post.all[1]
+po2.content = "Un nuevo contenido"
+po2.save
+puts po2.errors.full_messages
+puts "Content: #{po2.content}"
+puts "Tarea 22. Hecho."
+
+#Tarea 23
+us3 = User.find(3)
+us3 = User.where(first_name: "Usuario 3").first
+
+owners = us3.owner
+blog_ids = owners.pluck(:blog_id) # => [45, 3, 23]
+blogs = Blog.where(id: blog_ids)
+
+puts "Blogs del usuario 3: #{blogs}"
+puts "Tarea 23. Hecho."
+
+#Tarea 24
+us3 = User.find(3)
+us3 = User.where(first_name: "Usuario 3").first
+puts us3.post #has_many
+puts Post.where(user: us3) #belongs_to
+puts "Tarea 24. Hecho."
+
+#Tarea 25. 
+us3 = User.find(3)
+us3 = User.where(first_name: "Usuario 3").first
+puts us3.message #has_many
+puts Message.where(user: us3) #belongs_to
+puts "Tarea 25. Hecho."
